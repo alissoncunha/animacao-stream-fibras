@@ -4,14 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Stream de fibras + código</title>
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
+<!-- Sem importmap (StackBlitz clássico não suporta): three vem do esm.sh, que resolve as deps internas. -->
 <style>
   html, body { height: 100%; margin: 0; }
   body { background: #fff; overflow: hidden; }
@@ -29,10 +22,10 @@
   <div id="stage"></div>
   <div id="code"></div>
   <script type="module">
-    import * as THREE from 'three';
-    import { Line2 } from 'three/addons/lines/Line2.js';
-    import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
-    import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
+    import * as THREE from 'https://esm.sh/three@0.160.0';
+    import { Line2 } from 'https://esm.sh/three@0.160.0/examples/jsm/lines/Line2.js';
+    import { LineMaterial } from 'https://esm.sh/three@0.160.0/examples/jsm/lines/LineMaterial.js';
+    import { LineGeometry } from 'https://esm.sh/three@0.160.0/examples/jsm/lines/LineGeometry.js';
 
     // --- Config (valores travados) ---
     const CONFIG = {
