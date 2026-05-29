@@ -26,7 +26,8 @@ export function updateCode(particles, camera, time, w, h) {
   for (const c of particles) {
     c.progress += c.speed * 0.005 * CONFIG.speedGlobal;
     if (c.progress > 1) {
-      c.progress = 0; c.lane = randomLane(); c.speed = randomSpeed(); c.el.textContent = randomToken();
+      // jitter no reset (como nos sinais) evita que os tokens se acumulem na origem do leque
+      c.progress = Math.random() * 0.1; c.lane = randomLane(); c.speed = randomSpeed(); c.el.textContent = randomToken();
     }
     const p = getPathPoint(c.progress, c.lane, time, CONFIG);
     // soma positionX (o deslocamento X do grupo) para converter coord local -> mundo antes de projetar

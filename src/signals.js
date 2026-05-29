@@ -57,6 +57,8 @@ export function updateSignals(signals, time) {
       tmp.copy(WHITE).lerp(s.color, t * t);                    // cauda some no branco
       s.col[k * 3] = tmp.r; s.col[k * 3 + 1] = tmp.g; s.col[k * 3 + 2] = tmp.b;
     }
+    // setPositions/setColors realocam buffers por frame; se o FPS cair em hardware fraco,
+    // trocar por escrita in-place (ver Apêndice A do plano em docs/superpowers/plans).
     s.geo.setPositions(s.pos);
     s.geo.setColors(s.col);
   }
