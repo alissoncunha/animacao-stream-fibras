@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abrir animação no StackBlitz</title>
+<style>
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#f4f5f7; color:#1f2430; }
+  .card { text-align:center; max-width:560px; padding:32px; }
+  h1 { font-size:22px; margin:0 0 8px; }
+  p { color:#48505e; line-height:1.5; }
+  button { font:600 16px inherit; padding:14px 24px; border:0; border-radius:12px; background:#1f2430; color:#fff; cursor:pointer; margin-top:8px; }
+  button:hover { background:#33405a; }
+  button:disabled { opacity:.5; cursor:wait; }
+  ol { text-align:left; color:#48505e; line-height:1.7; margin-top:18px; }
+  code { background:#e7e9ee; padding:2px 6px; border-radius:6px; font-size:13px; }
+  #status { color:#8a909c; font-size:13px; min-height:18px; margin-top:8px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Abrir a animação no StackBlitz</h1>
+    <p>Cria um projeto <b>estático</b> (template <code>html</code>, sem WebContainer) — esse tipo embeda no Excalidraw sem dar erro de browser.</p>
+    <button id="go">⚡ Abrir no StackBlitz</button>
+    <div id="status"></div>
+    <ol>
+      <li>Clique no botão. O StackBlitz abre com a animação rodando.</li>
+      <li>No StackBlitz, clique em <b>Save</b> / faça login (conta grátis) para gerar um link fixo do projeto.</li>
+      <li>Copie a URL do projeto e, no Excalidraw, cole-a com <code>?embed=1&amp;view=preview</code> no final.</li>
+    </ol>
+  </div>
+  <script type="module">
+    import sdk from 'https://cdn.jsdelivr.net/npm/@stackblitz/sdk@1/+esm';
+    const btn = document.getElementById('go');
+    const status = document.getElementById('status');
+    btn.addEventListener('click', async () => {
+      btn.disabled = true; status.textContent = 'Carregando a animação…';
+      try {
+        const html = await (await fetch('./embed.html')).text();
+        status.textContent = 'Abrindo o StackBlitz…';
+        sdk.openProject(
+          {
+            title: 'Animação — stream de fibras + código',
+            description: 'three.js, fundo branco',
+            template: 'html',
+            files: { 'index.html': html },
+          },
+          { openFile: 'index.html', newWindow: true }
+        );
+      } catch (e) {
+        status.textContent = 'Erro: ' + e.message;
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
