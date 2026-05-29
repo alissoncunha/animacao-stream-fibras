@@ -1,0 +1,9 @@
+# Rascunhos do companion visual (brainstorming) — não versionar
+.superpowers/
+
+# Sistema
+.DS_Store
+
+# Dependências (caso futuramente use build)
+node_modules/
+dist/
