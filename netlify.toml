@@ -1,0 +1,9 @@
+# Site estático, sem passo de build.
+[build]
+  publish = "."
+
+# Para restringir o embed só ao domínio do ScaleDraw (opcional), descomente:
+# [[headers]]
+#   for = "/*"
+#   [headers.values]
+#     Content-Security-Policy = "frame-ancestors https://SEU-DOMINIO-SCALEDRAW"
