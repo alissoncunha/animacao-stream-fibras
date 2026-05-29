@@ -7,3 +7,6 @@
 # Dependências (caso futuramente use build)
 node_modules/
 dist/
+
+# Local Netlify folder
+.netlify
